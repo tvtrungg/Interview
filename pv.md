@@ -36,6 +36,9 @@ description: Tổng quát các kiến thức nền tảng website
 
 [14. Mô hình MVVM](#14-mô-hình-mvvm)
 
+[15. So sánh MVC, MVP, MVVM](#15-so-sánh-3-mô-hình-mvc-mvp-mvvm)
+
+
 ## <span style="color: #ffab24">**1. Callback**</span>
 Là hàm được truyền qua đối số khi gọi hàm khác và được gọi lại trong hàm nhận đối số
 ```javascript
@@ -122,7 +125,7 @@ promise
 - AJAX - "Asynchronous JavaScript and XML" - là một bộ công cụ cho phép load dữ liệu từ server mà không yêu cầu tải lại trang. Nó sử dụng chức năng sẵn có XMLHttpRequest(XHR) của trình duyệt để thực hiện một yêu cầu đến server và xử lý dữ liệu server trả về. 
 - jQuery cung cấp method **$.ajax** và một số methods tiện lợi giúp bạn làm việc với XHRs thông qua trình duyệt một cách dễ dàng hơn.
 
-	- a) Phương thức “load()”
+	- `a) Phương thức “load()”`
 		- Cú pháp:
 		```javascript
 		[selector].load( URL, [data], [callback] );
@@ -140,7 +143,7 @@ promise
 		```
 		--> Hàm load() khởi tạo một AJAX request tới URL file đã xác định là ./result.html. Sau khi tải file này, tất cả nội dung sẽ được đưa đến vào trong phần tử được tag với ID là stage.
 
-	- b) Phương thức “get()” và “post()”
+	- `b) Phương thức “get()” và “post()”`
 		- get()
 		```javascript
 		$(document).ready(function() {
@@ -170,7 +173,7 @@ promise
 			});
     	});
 		```
-	- c) Phương thức “ajax()”
+	- `c) Phương thức “ajax()”`
 	```javascript
 	$(document).ready(function() {
 		$('#load-du-lieu').click(function(e) {
@@ -487,27 +490,218 @@ Sau đó mã hóa 2 chuỗi trên kèm theo secret (khóa bí mật) bằng thu�
 ## <span style="color: #ffab24">**12. Mô hình MVC**</span> 
 ## <span style="color: #ffab24">**13. Mô hình MVP**</span> 
 ## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**15. Local Storage, Session Storage và Cookie**</span> 
+## <span style="color: #ffab24">**15. So sánh 3 mô hình MVC, MVP, MVVM**</span> 
+| Mô hình | Mô tả| Ưu điểm| Nhược điểm|
+|---------|---------|---------|---------|
+| MVC     |`Model-View-Controller (MVC)` chia thành ba thành phần chính: Model (dữ liệu), View (giao diện) và Controller (xử lý logic).                                             | - Phân chia rõ ràng giữa các thành phần, tạo sự tách biệt giữa dữ liệu, giao diện và logic.                                                         | - Đôi khi Controller có thể trở nên phức tạp và quá mức phụ thuộc vào View và Model.                                                          |
+| MVP     | `Model-View-Presenter (MVP)` cũng chia thành ba thành phần chính: Model (dữ liệu), View (giao diện) và Presenter (xử lý logic và trung gian giữa Model và View).           | - Giúp tách biệt logic xử lý và giao diện, dễ dàng kiểm thử đơn vị.                                                                                   | - Có sự phụ thuộc mạnh mẽ giữa Presenter và View, có thể dẫn đến khó khăn khi thay đổi giao diện.                                              |
+| MVVM    | `Model-View-ViewModel (MVVM)` tách biệt hoàn toàn giữa giao diện (View) và logic (ViewModel) bằng cách sử dụng Data Binding. Model chịu trách nhiệm về dữ liệu và logic nghiệp vụ. | - Data Binding giữa View và ViewModel giúp tự động cập nhật giao diện khi dữ liệu thay đổi.                                                        | - Cần sử dụng thêm một số công cụ hoặc thư viện hỗ trợ Data Binding. Có thể dẫn đến hiệu suất chậm nếu không quản lý tốt quá trình binding. |
 
-## <span style="color: #ffab24">**16. Khác biệt giữa HTML và HTML5**</span> 
+
+## <span style="color: #ffab24">**16. Local Storage, Session Storage và Cookie**</span> 
+### <span style="color: #34f7ee">**Giống nhau**</span> 
+- Đều lưu trữ dữ liệu trên trình duyệt web của người dùng.
+- Hỗ trợ lưu trữ dữ liệu ở dạng key-value pairs.
+- Có giới hạn dung lượng lưu trữ.
+- Chỉ lưu trữ dữ liệu ở dạng chuỗi.
+### <span style="color: #34f7ee">**Khác nhau**</span>
+Feature|Local Storage|Session Storage | Cookie 
+|------------|------------|------------ | -------------
+Phạm vi lưu trữ |Có phạm vi toàn bộ trang web và có thể truy cập từ mọi nơi trên trang web. |  Chỉ có phạm vi trong một phiên làm việc (session) của trình duyệt và bị xóa khi phiên làm việc kết thúc |  Có thể có phạm vi toàn bộ trang web hoặc chỉ trong một tên miền cụ thể.
+Tương tác với máy chủ|Dữ liệu trong cả hai cơ chế này không được gửi đến máy chủ trong mỗi yêu cầu HTTP. Chúng chỉ tồn tại trên trình duyệt của người dùng|_|Dữ liệu trong Cookie được gửi đến máy chủ trong mỗi yêu cầu HTTP thông qua header "Cookie". Điều này cho phép máy chủ lưu trữ và đọc dữ liệu từ Cookie.
+Kích thước lưu trữ|Khoảng 5MB|Chỉ vài MB|Vài KB
+Thời gian sống|Không có thời gian sống, nó sẽ tồn tại cho đến khi bị xóa bằng cách xóa bằng tay hoặc thông qua mã lệnh.|Chỉ tồn tại trong một phiên làm việc (session) của trình duyệt| Có thể có thời gian sống xác định, có thể được đặt để tồn tại trong một khoảng thời gian nhất định hoặc được xóa khi trình duyệt đóng.
+Sử dụng và mục đích sử dụng| Thường được sử dụng để lưu trữ dữ liệu lâu dài, như cài đặt người dùng, lịch sử truy cập, thông tin cá nhân ...|Thường được sử dụng để lưu trữ dữ liệu tạm thời trong phiên làm việc, như thông tin đăng nhập, giỏ hàng, trạng thái phiên làm việc ...| Thường được sử dụng để lưu trữ thông tin nhận dạng người dùng, như thông tin đăng nhập, thông tin ngôn ngữ, thông tin giỏ hàng v.v. Cookie cũng có thể được sử dụng để theo dõi người dùng và cung cấp quảng cáo cá nhân hóa.
+
+## <span style="color: #ffab24">**17. Khác biệt giữa HTML và HTML5**</span> 
 HTML5 là phiên bản mới nhất của HTML và cung cấp nhiều tính năng mới như hỗ trợ multimedia, semantic elements, canvas, drag and drop, và offline storage.
-## <span style="color: #ffab24">**17. Một số cách tăng Performance website**</span> 
+## <span style="color: #ffab24">**18. Một số cách tăng Performance website**</span> 
 Để tối ưu hóa hiệu suất Front-end có thể sử dụng các kỹ thuật như:  
 - minification và compression của file CSS và JavaScript
 - lazy loading, caching, sử dụng sprites hình ảnh, tối ưu hóa đường dẫn và kích thước hình ảnh, và loại bỏ các tài nguyên không cần thiết.
-## <span style="color: #ffab24">**18. Tiêu chuẩn W3C**</span> 
-## <span style="color: #ffab24">**19. HTTP Request Và HTTP Response**</span> 
+## <span style="color: #ffab24">**19. Tiêu chuẩn W3C**</span> 
+W3C viết tắt của cụm từ World Wide Web Consortium, W3C là chuẩn được các nhà thiết kế website sử dụng làm thước đo khi thiết kế website, cũng giống như lương của bạn được đo bằng giá trị của bạn mang lại cho công ty vậy.
+### <span style="color: #34f7ee">**Lợi ích**</span>
+- Website của bạn sẽ thân thiện hơn với các Search Engine đặc biệt là google spider.
+- Website của bạn được hỗ trợ tốt trên nhiều trình duyệt, bạn không mất nhiều thời gian để chỉnh sửa và tối ưu hóa cho từng trình duyệt.
+- Các thiết bị hiển thị website di động như điện thoại IPad đều dựa trên chuẩn W3C. Do đó, Website của bạn sẽ hiển thị tốt hơn. Để kiểm tra website của bạn có tuân thủ theo chuẩn W3C hay chưa thì bạn có thể vào https://validator.w3.org/ để kiểm tra. 
+### <span style="color: #34f7ee">**Một số lưu ý**</span>
+- Thiếu thuộc tính alt trên thẻ img
+- Đặt giá trị ID trùng nhau	
+- Sử dụng các ký tự đặc biệt
+- Sử dụng sai thuộc tính href trên thẻ a
+	```html 
+	<a href=”link 1″ target=”_blank”> link 1</a>	
+
+	--> <a href=”link_1″ target=”_blank”> link 1</a>
+
+	```
+- Không phân biệt được inline element và block element
+
+
 ## <span style="color: #ffab24">**20. So sánh Javascript ES5 và ES6**</span> 
 ### <span style="color: #34f7ee">**Giống nhau**</span> 
 - Cả ES5 và ES6 đều là phiên bản của JavaScript và chạy trên các trình duyệt hiện đại.
 - Cả hai phiên bản hỗ trợ việc xử lý các loại dữ liệu cơ bản, như chuỗi, số, mảng, đối tượng, hàm, và điều khiển luồng.
-### <span style="color: #34f7ee">**Khác nhau**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
-## <span style="color: #ffab24">**14. Mô hình MVVM**</span> 
+### <span style="color: #34f7ee">**Khác nhau**</span>
+Feature|ES5 | ES6
+|------------|------------ | -------------
+_ |Phát hành vào năm 2009 | Phát hành vào năm 2015
+OOP|Không hỗ trợ lập trình hướng đối tượng | Hỗ trợ lập trình hướng đối tượng
+Variable|Sử dụng từ khóa `var` để khai báo biến. Biến khai báo bằng var có phạm vi là hàm và không có phạm vi block. | Hỗ trợ khai báo biến bằng `let` và `const`
+Function|Cú pháp hàm truyền thống với từ khóa function | Arrow function (`=>`): là một cú pháp rút gọn của function expression và thừa kế giá trị this từ phạm vi bên ngoài.
+Template literals|Sử dụng chuỗi thông thường, hạn chế khả năng kết hợp với biểu thức JavaScript. | Cho phép sử dụng template literals (` `` `) để tạo ra chuỗi kết hợp với biểu thức JavaScript một cách dễ dàng và đọc được hơn.
+Destructuring|_ | Là một cú pháp cho phép ta tách các phần tử của một mảng hoặc các thuộc tính của một đối tượng ra và gán chúng vào các biến riêng biệt
+Default parameters| _ |Cho phép khai báo giá trị mặc định cho các tham số của hàm, giúp viết mã linh hoạt hơn.
+Rest parameters| _| Là một cú pháp cho phép ta truyền một danh sách các tham số vào một hàm dưới dạng một mảng
+Spread operator| _ | Là một cú pháp cho phép ta truyền một mảng vào một hàm dưới dạng một danh sách các tham số.
+Classes |Khai báo đối tượng thông qua hàm tạo. |Hỗ trợ khai báo lớp thông qua từ khóa `class`, giúp lập trình viên dễ dàng xây dựng và quản lý các đối tượng. <br>`class Person {`<br>&emsp;&emsp;`constructor(name, age) {`<br>&emsp;&emsp;&emsp;&emsp;`        this.name = name;`<br>&emsp;&emsp;&emsp;&emsp;`        this.age = age;`<br>&emsp;&emsp;`}`<br>`}` 
+Modules|_ | Hỗ trợ cú pháp `import` và `export` để nhập và xuất các mô-đun JavaScript, giúp tạo ra cấu trúc mã mô-đun và tái sử dụng mã dễ dàng hơn.
+Promises | _ | Đưa vào JavaScript khái niệm Promise để xử lý các tác vụ bất đồng bộ một cách gọn nhẹ và dễ sử dụng hơn.
+Iterators và Generators|_ | Giúp lặp lại và xử lý các tập hợp dữ liệu một cách thuận tiện và linh hoạt.
+
+## <span style="color: #ffab24">**21. Array Methods**</span>
+### <span style="color: #34f7ee">**forEach()**</span>
+Duyệt qua từng phần tử trong mảng 
+```javascript
+const arr = [1, 2, 3, 4, 5];
+arr.forEach((item, index) => {
+	console.log(item, index);
+});
+```
+### <span style="color: #34f7ee">**every() – bool**</span>
+- Kiểm tra tất cả các phần tử trong mảng có thỏa mãn điều kiện hay không. 
+- Nếu `tất cả các phần tử` đều thỏa mãn điều kiện thì trả về `true`, ngược lại trả về `false`.
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const isEven = arr.every((item) => {
+	return item % 2 === 0;
+});
+console.log(isEven); // false
+``` 
+
+### <span style="color: #34f7ee">**some() - bool**</span>
+Ngược với `every()`, chỉ cần có 1 ptử đúng --> true
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const isEven = arr.some((item) => {
+	return item % 2 === 0;
+});
+console.log(isEven); // true
+```
+
+### <span style="color: #34f7ee">**find()**</span>
+Trả về phần tử cần tìm `đầu tiên` trong mảng
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const result = arr.find((item) => {
+	return item % 2 === 0;
+});
+console.log(result); // 2
+```
+ 
+### <span style="color: #34f7ee">**filter()**</span>
+Trả về tất cả ptử cần tìm trong mảng
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const result = arr.filter((item) => {
+	return item % 2 === 0;
+});
+console.log(result); // [2, 4]
+```
+### <span style="color: #34f7ee">**map()**</span> 
+Có chức năng tương tự như `forEach()`, nhưng `map()` dùng chỉnh sửa các phần tử trong mảng
+```javascript
+const arr = [1, 2, 3, 4, 5];
+const result = arr.map((item) => {
+	return item * 2;
+});
+console.log(result); // [2, 4, 6, 8, 10]
+
+// Ví dụ 2
+function courseHandler(course, index){
+     return {
+        id: course.id,
+        name: ` Khoa hoc: ${course.name}`,
+        coin: course.coin,
+     }
+}
+
+var newCourse = courses.map(courseHandler)
+```
+
+### <span style="color: #34f7ee">**reduce()**</span> 
+Dùng để tính tổng các phần tử trong mảng. Hoặc trả về các thông tin của mảng 
+```javascript
+function coinHandler(accumulator, currentValue, currentIndex, array){
+	// accumulator: giá trị trả về của lần gọi trước
+	// currentValue: giá trị của phần tử hiện tại
+	// currentIndex: index của phần tử hiện tại
+	// array: mảng đang được duyệt
+	return accumulator + currentValue.coin
+}
+
+var totalCoin = courses.reduce(coinHandler, 0) // 0 là giá trị khởi tạo cho accumulator
+```
+
+Ví dụ:
+```javascript
+// 1. Tính tổng
+const arr = [1, 2, 3, 4, 5];
+const result = arr.reduce((total, item) => {
+	return total + item;
+}, 0); // 0 là giá trị khởi tạo cho total
+console.log(result); // 15
+
+// 2. Trả về thông tin mảng
+var depthArr = [1, 2, [3, 4], 5, 6, [7, 8, 9]] ;
+var flatArr = depthArr.reduce(function(flatOutput, depthItem){
+	return flatOuput.concat(depthItem);
+}, [])
+console.log(flatArr) 	// [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+
+### <span style="color: #34f7ee">**concat()**</span>
+Dùng để nối 2 mảng lại với nhau
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const result = arr1.concat(arr2);
+console.log(result); // [1, 2, 3, 4, 5, 6]
+```
+
+### <span style="color: #34f7ee">**slice()**</span>
+Dùng để cắt mảng
+```javascript
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+ 
+console.log(animals.slice(2)); // ["camel", "duck", "elephant"]
+ 
+console.log(animals.slice(2, 4)); // ["camel", "duck"]
+ 
+console.log(animals.slice(1, 5)); // ["bison", "camel", "duck", "elephant"]
+ 
+console.log(animals.slice(-2)); // ["duck", "elephant"]
+ 
+console.log(animals.slice(2, -1)); // ["camel", "duck"]
+```
+
+### <span style="color: #34f7ee">**split()**</span>
+Dùng để tách chuỗi thành mảng
+```javascript
+const str = 'Have a good day!';
+const result = str.split(' ');
+console.log(result); // ["Have", "a", "good", "day!"]
+```
+
+### <span style="color: #34f7ee">**join()**</span>
+Dùng để nối các phần tử trong mảng thành chuỗi
+```javascript
+const arr = ['Have', 'a', 'good', 'day!'];
+const result = arr.join(' ');
+console.log(result); // "Have a good day!"
+```
+
 
 
 Express: môi trường
